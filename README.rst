@@ -1,15 +1,14 @@
-Example
-#######
+Unattended upgrades
+###################
 
-An (empty) example Ansible role complete with working tests out of the box. For
-more information read the `blog post
-<https://www.shore.co.il/blog/ansible-example-role/>`_.
+An Ansible role to configure unattended upgrades on Debian based distros.
 
 Requirements
 ------------
 
 - `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- `OpenBSD 5.9 or later <http://www.openbsd.org/>`_.
+- `Debian Jessie <http://www.debian.org/>`_ (should work on other distros and
+  versions but aren't tested).
 
 Role Variables
 --------------

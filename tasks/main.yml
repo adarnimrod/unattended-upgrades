@@ -1,7 +1,52 @@
 ---
-# tasks file for ansible-role-example
+# tasks file for ansible-role-unatteded-upgrades
 
-- assert:
-    that:
-        - ansible_os_family == 'OpenBSD'
-        - ansible_distribution_release == '5.9'
+- name: Assert
+  assert:
+    that: ansible_pkg_mgr == 'apt'
+
+- name: apt install unattended-upgrades
+  with_items:
+      - apt-listchanges
+      - unattended-upgrades
+  apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Configure unattended-upgrades
+  with_items:
+  - dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    line: 'Unattended-Upgrade::Mail "root";'
+    regexp: '^Unattended-Upgrade::Mail '
+  - dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    line: 'Unattended-Upgrade::MailOnlyOnError "true";'
+    regexp: '^Unattended-Upgrade::MailOnlyOnError'
+  - dest: /etc/apt/apt.conf.d/20auto-upgrades
+    line: 'APT::Periodic::Update-Package-Lists "1";'
+    regexp: '^APT::Periodic::Update-Package-Lists'
+    create: yes
+    owner: root
+    group: root
+    mode: 0o0644
+  - dest: /etc/apt/apt.conf.d/20auto-upgrades
+    line: 'APT::Periodic::Unattended-Upgrade "1";'
+    regexp: '^APT::Periodic::Unattended-Upgrade'
+    create: yes
+    owner: root
+    group: root
+    mode: 0o0644
+  lineinfile:
+    dest: '{{ item.dest }}'
+    line: '{{ item.line }}'
+    regexp: '{{ item.regexp }}'
+    create: '{{ item.create|default(False) }}'
+    owner: '{{ item.owner|default(omit) }}'
+    group: '{{ item.group|default(omit) }}'
+    mode: '{{ item.mode|default(omit) }}'
+
+- name: Enable service
+  service:
+      name: unattended-upgrades
+      enabled: yes
