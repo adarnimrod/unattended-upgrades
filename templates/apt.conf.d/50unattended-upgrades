@@ -1,0 +1,6 @@
+Unattended-Upgrade::Mail: "root";
+Unattended-Upgrade::Allowed-Origins: {
+    "${distro_id} ${distro_codename}-security";
+    "l=${distro_id}-Security";
+};
+Unattended-Upgrade::AutoFixInterruptedDpkg: "true";
