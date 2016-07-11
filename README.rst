@@ -6,14 +6,12 @@ An Ansible role to configure unattended upgrades on Debian based distros.
 Requirements
 ------------
 
-- `Ansible 2.0 or later <https://www.ansible.com/>`_.
-- `Debian Jessie <http://www.debian.org/>`_ (should work on other distros and
-  versions but aren't tested).
+See :code:`meta/main.yml` and assertions at top of :code:`tasks/main.yml`.
 
 Role Variables
 --------------
 
-None.
+See :code:`defaults/main.yml`.
 
 Dependencies
 ------------
