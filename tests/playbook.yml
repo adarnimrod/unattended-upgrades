@@ -1,4 +1,4 @@
 ---
 - hosts: all
   roles:
-    - role: ansible-role-unatteded-upgrades
+    - role: unattended-upgrades

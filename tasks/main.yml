@@ -1,5 +1,5 @@
 ---
-# tasks file for ansible-role-unatteded-upgrades
+# tasks file for unattended-upgrades
 - name: Assertions
   assert:
     that: ansible_pkg_mgr == 'apt'
@@ -16,7 +16,7 @@
 
 - name: Configure
   with_fileglob:
-      - templates/apt.conf.d/*
+      - '{{ role_path }}/templates/apt.conf.d/*'
   template:
       src: '{{ item }}'
       dest: /etc/apt/apt.conf.d/

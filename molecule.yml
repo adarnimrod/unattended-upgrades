@@ -13,7 +13,7 @@ vagrant:
   - name: jessie
     box: debian/jessie64
   instances:
-  - name: ansible-role-unatteded-upgrades
+  - name: unattended-upgrades
     options:
         append_platform_to_hostname: yes
   raw_config_args:
