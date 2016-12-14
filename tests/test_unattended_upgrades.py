@@ -3,11 +3,6 @@ from testinfra.utils.ansible_runner import AnsibleRunner
 testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
 
 
-def test_unattended_upgrades_service(Service):
-    assert Service('unattended-upgrades').is_enabled
-    assert Service('unattended-upgrades').is_running
-
-
 def test_unattended_upgrades_package(Package):
     assert Package('unattended-upgrades').is_installed
 

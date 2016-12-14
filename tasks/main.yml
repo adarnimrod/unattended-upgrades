@@ -24,11 +24,3 @@
       owner: root
       group: root
       mode: 0o0644
-  notify:
-      - Restart unattended-upgrades
-
-- name: Enable service
-  service:
-      name: unattended-upgrades
-      state: started
-      enabled: yes

@@ -1,7 +1,2 @@
 ---
 # handlers file for unattended-upgrades
-
-- name: Restart unattended-upgrades
-  service:
-      name: unattended-upgrades
-      state: restarted
