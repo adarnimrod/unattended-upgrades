@@ -1,6 +1,7 @@
 Unattended-Upgrade::Mail: "root";
-Unattended-Upgrade::Allowed-Origins: {
-    "${distro_id} ${distro_codename}-security";
-    "l=${distro_id}-Security";
+Unattended-Upgrade::Origins-Pattern {
+    "origin=Debian,label=Debian-Security";
+    "origin=Ubuntu,archive=${distro_codename}-security";
 };
+
 Unattended-Upgrade::AutoFixInterruptedDpkg: "true";
