@@ -24,4 +24,7 @@
       owner: root
       group: root
       mode: 0o0644
-      validate: unattended-upgrade --dry-run
+
+- name: Validate config
+  command: unattended-upgrade --dry-run
+  changed_when: False
